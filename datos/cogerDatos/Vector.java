@@ -12,8 +12,14 @@ import java.util.ArrayList;
  * @since 2018
  */
 public class Vector {
-    ArrayList<String> datos;
+    private ArrayList<String> datos;
     
+    /**
+     * Método constructor
+     */
+    public Vector() {
+
+    }
     /**
      * Método constructor que se le pasa un tamaño.
      * @param datos
@@ -34,6 +40,29 @@ public class Vector {
         for (int i = 0; i < aux.length; i++) {
             add(aux[i]);
         }
+    }
+    /**
+     * Método que devuelve un vector con el tipo de dato que se ha almacenado distinguiendo si es de
+     * tipo double o es un string.
+     */
+    public Vector typesDatos() {
+        Vector aux = new Vector(getTam());      
+        for(String value: this.datos) {
+            if(isNumeric(value)) {
+                aux.add("Double");
+            }else {
+                aux.add("String");
+            }
+        }
+        return aux;
+    }
+    /**
+     * Método que verifica el si el string que se le pasa es un numero o no.
+     * @param str
+     * @return
+     */
+    private boolean isNumeric(String str) {
+        return (str.matches("[+-]?\\d*(\\.\\d+)?") && str.equals("")==false);
     }
     /**
      * Método para saber si los elemnto de las posiciones index son el mismo.
@@ -94,6 +123,14 @@ public class Vector {
      */
     public String get(int index) {
         return datos.get(index);
+    }
+    /**
+     * Método que devuleve el valor de la posicion index en tipo double.
+     * @param index
+     * @return
+     */
+    public Double getDouble(int index) {
+        return Double.parseDouble(datos.get(index));
     }
     /*
      * (sin Javadoc)

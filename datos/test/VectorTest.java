@@ -4,7 +4,15 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import cogerDatos.Vector;
-
+/**
+ * Clase que donde se hacen los tery para comprobar la clase Vector.
+ * 
+ * @author Jairo González Lemus. Email : alu0100813272@ull.edu.es Universidad:
+ *         Universidad de La Laguna. Práctica Asignatura: Modelado Sistemas
+ *         Sofware.
+ * @version 1.0
+ * @since 2018
+ */
 class VectorTest {
     
     @Test
