@@ -20,84 +20,6 @@ public class DataSet {
     private ArrayList<Vector> datos;// valor
     
     private ArrayList<Vector> normalizado;
-////////////////Normalizar   
-    /**
-     * Método que normaliza los valore que hay en los datos segun. 
-     */
-    private void normalizar() {    
-        for(Vector aux: datos) {
-            normalizado.add(normalizar(aux));
-        }
-    }
-    public Vector normalizar(Vector dato) {
-        Vector max = this.max();
-        Vector min = this.min();
-        Vector nuevo = new Vector();
-        for(int i = 0 ; i < dato.getTam()-1 ; i++) {
-            double num = dato.getDouble(i) - min.getDouble(i);
-            double den =  (max.getDouble(i) - min.getDouble(i));
-            double x =  Math.round(num / den ); 
-             System.out.println(Math.round(x) + "calculo");
-             nuevo.add( x );
-        } 
-        nuevo.add(dato.get(dato.getTam()-1));
-        return nuevo;
-    }
-//////////////////normalizar
-    /**
-     * Método que retorana el numero de atributos de la instancia.
-     * @return
-     */
-    public int getNumAttr() {
-        return sc.getTam();
-    }
-    /**
-     * Método que retorana el numero de instancias.
-     * @return
-     */
-    public int getTam() {
-        return datos.size();
-    }
-    /**
-     * Método que devuelve todo los valores de la columna index en un tipo 
-     * de objeto Vector.
-     * @param index
-     * @return
-     */
-    public Vector columna(int index){
-        Vector aux = new Vector(getTam());
-        for(Vector value: datos) {
-            aux.add(value.get(index));
-        }
-        return aux;
-    }    
-    /**
-     * Se calcula el valor mínimo de cada atributo numerico y se devulve
-     * un vector con todos eso valores.
-     * @return
-     */
-    public Vector min() {
-        Vector min = new Vector(getTam());
-        // -1 el ultimo vecot es de clase.
-        for(int i = 0 ; i < sc.getTam()-1 ;i++) {
-             min.add(columna(i).min());
-        }
-        return min;
-    }
-    
-    /**
-     * Se calcula el valor máximo de cada atributo numerico y se devulve
-     * un vector con todos eso valores.
-     * @return
-     */
-    public Vector max() {
-        Vector max = new Vector(getTam());
-        // -1 el ultimo vecot es de clase.
-        for(int i = 0 ; i < sc.getTam() -1 ;i++) {
-             max.add(columna(i).max());
-        }
-        return max;
-    }
     /**
      * Método constructor por defecto.
      */
@@ -114,6 +36,7 @@ public class DataSet {
         this();
         this.name = name;
         this.sc = sc;
+        this.normalizar();
     }
     /**
      * Método constructor, lee todo los datos por el fichero que le pasomos su
@@ -169,6 +92,85 @@ public class DataSet {
             }
         }
     }
+    //////////////// Normalizar
+    /**
+     * Método que normaliza los valore que hay en los datos segun.
+     */
+    private void normalizar() {
+        for (Vector aux : datos) {
+            normalizado.add(normalizar(aux));
+        }
+    }
+    public Vector normalizar(Vector dato) {
+        Vector max = this.max();
+        Vector min = this.min();
+        Vector nuevo = new Vector();
+        for (int i = 0; i < dato.getTam() - 1; i++) {
+            double num = dato.getDouble(i) - min.getDouble(i);
+            double den = (max.getDouble(i) - min.getDouble(i));
+            double x = Math.round(num / den);
+            System.out.println(Math.round(x) + "calculo");
+            nuevo.add(x);
+        }
+        nuevo.add(dato.get(dato.getTam() - 1));
+        return nuevo;
+    }
+    ////////////////// normalizar
+    /**
+     * Método que retorana el numero de atributos de la instancia.
+     * @return
+     */
+    public int getNumAttr() {
+        return sc.getTam();
+    }
+    /**
+     * Método que retorana el numero de instancias.
+     * @return
+     */
+    public int getTam() {
+        return datos.size();
+    }
+    /**
+     * Método que devuelve todo los valores de la columna index en un tipo de
+     * objeto Vector.
+     * @param index
+     * @return
+     */
+    public Vector columna(int index) {
+        Vector aux = new Vector(getTam());
+        for (Vector value : datos) {
+            aux.add(value.get(index));
+        }
+        return aux;
+    }
+    /**
+     * Se calcula el valor mínimo de cada atributo numerico y se devulve un
+     * vector con todos eso valores.
+     * @return
+     */
+    public Vector min() {
+        Vector min = new Vector(getTam());
+        // -1 el ultimo vecot es de clase.
+        for (int i = 0; i < sc.getTam() - 1; i++) {
+            min.add(columna(i).min());
+        }
+        return min;
+    }
+    
+    /**
+     * Se calcula el valor máximo de cada atributo numerico y se devulve un
+     * vector con todos eso valores.
+     * @return
+     */
+    public Vector max() {
+        Vector max = new Vector(getTam());
+        // -1 el ultimo vecot es de clase.
+        for (int i = 0; i < sc.getTam() - 1; i++) {
+            max.add(columna(i).max());
+        }
+        return max;
+    }
+    
     /**
      * Método para obtener la variable sc
      * @return sc
@@ -248,8 +250,8 @@ public class DataSet {
     /**
      * Método para visualizar normalizar
      */
-    public void printNormalizar() {       
-        for(Vector aux: normalizado) {
+    public void printNormalizar() {
+        for (Vector aux : normalizado) {
             System.out.println(aux);
         }
     }
