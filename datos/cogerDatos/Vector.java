@@ -2,6 +2,7 @@ package cogerDatos;
 
 import java.util.ArrayList;
 
+
 /**
  * Clase que manejara un arryalist<String> como si fuera un vector.
  * 
@@ -11,14 +12,14 @@ import java.util.ArrayList;
  * @version 1.0
  * @since 2018
  */
-public class Vector {
+public class Vector{
     private ArrayList<String> datos;
     
     /**
      * Método constructor
      */
     public Vector() {
-
+        datos = new ArrayList<String>();
     }
     /**
      * Método constructor que se le pasa un tamaño.
@@ -37,10 +38,20 @@ public class Vector {
         String aux[] = linea.split(",");
         // System.out.println(aux.length);
         datos = new ArrayList<String>(aux.length);
+       
         for (int i = 0; i < aux.length; i++) {
-            add(aux[i]);
+            if(isDouble(aux[i])) {
+                add(aux[i].replaceAll("\\,","\\."));
+            }
+            else if(isInteger(aux[i])) {
+                add(aux[i] + ".0");
+            //  System.out.println("ddddddddd" + aux[i]+".00");
+            }else {
+                add(aux[i]);
+            }
         }
     }
+
     /**
      * Método que devuelve un vector con el tipo de dato que se ha almacenado distinguiendo si es de
      * tipo double o es un string.
@@ -56,6 +67,7 @@ public class Vector {
         }
         return aux;
     }
+////////////////////////////////////////////////////////////////////
     /**
      * Método que verifica el si el string que se le pasa es un numero o no.
      * @param str
@@ -64,6 +76,23 @@ public class Vector {
     private boolean isNumeric(String str) {
         return (str.matches("[+-]?\\d*(\\.\\d+)?") && str.equals("")==false);
     }
+    /**
+     * Método que verifica el si el string que se le pasa es un double o no.
+     * @param str
+     * @return
+     */
+    private boolean isDouble(String str) {
+        return (str.matches("[+-]?\\d*(\\.\\d+)") && str.equals("")==false);
+    }
+    /**
+     * Método que verifica el si el string que se le pasa es un double o no.
+     * @param str
+     * @return
+     */
+    private boolean isInteger(String str) {
+        return (str.matches("[+-]?\\d+") && str.equals("")==false);
+    }
+///////////////////////////////////////////////////////////////////////
     /**
      * Método para saber si los elemnto de las posiciones index son el mismo.
      * @param aux
@@ -88,6 +117,53 @@ public class Vector {
     public boolean compareIgual(Vector aux, int index) {
         return (aux.get(index).equals(datos.get(index))) ? true : false;
     }
+    
+    public String min() {
+        Double min= 100000.0;
+        for(String value : this.datos) {
+            int d = Double.compare(min, Double.parseDouble(value));
+            if(d > 0) {
+                min =  Double.parseDouble(value);
+            }
+        }
+        return String.format("%.2f", min);
+    }
+    public String max() {
+        Double max= -10000.0;
+        for(String value : this.datos) {
+            int d = Double.compare(max, Double.parseDouble(value));
+          //  System.out.println(value);
+            if(d < 0) {
+                max =  Double.parseDouble(value);
+            }
+        }
+       
+        return String.format("%.2f", max);
+    }
+ //////////////////////////////////////////////////////////////////
+    /**
+     * Método para saber si los elemnto de las posiciones index son es menor.
+     * @param aux
+     * @return
+     */
+    public boolean compareMenor(Vector aux, int index) {
+        double numA = Double.parseDouble(get(index));
+        double numB = Double.parseDouble(aux.get(index));
+        int d = Double.compare(numA, numB);
+        return (d > 0) ? true : false;
+    }
+    /**
+     * Método para saber si los elemnto de las posiciones index son es mayor.
+     * @param aux
+     * @return
+     */
+    public boolean compareMayor(Vector aux, int index) {
+        double numA = Double.parseDouble(get(index));
+        double numB = Double.parseDouble(aux.get(index));
+        int d = Double.compare(numA, numB);
+        return (d > 0) ? true : false;
+    }
+ //////////////////////////////////////////////////////////////////////////
     /**
      * Método para obtener la variable datos
      * @return datos
@@ -113,6 +189,14 @@ public class Vector {
      * Método que ingresara un dato dentro del arrayList.
      * @param newDato el nuevo dato introducido.
      */
+    public void add(Double newDato) {
+        System.out.println(newDato + "mieeeeeeeeeee");
+        datos.add(newDato.toString());
+    }
+    /**
+     * Método que ingresara un dato dentro del arrayList.
+     * @param newDato el nuevo dato introducido.
+     */
     public void add(String newDato) {
         datos.add(newDato);
     }
@@ -122,7 +206,7 @@ public class Vector {
      * @return
      */
     public String get(int index) {
-        return datos.get(index);
+        return datos.get(index).replaceAll(",", ".");
     }
     /**
      * Método que devuleve el valor de la posicion index en tipo double.
@@ -130,7 +214,8 @@ public class Vector {
      * @return
      */
     public Double getDouble(int index) {
-        return Double.parseDouble(datos.get(index));
+       // System.out.println(get(index) + " ufff" + index);
+        return Double.parseDouble(get(index));
     }
     /*
      * (sin Javadoc)
@@ -138,8 +223,7 @@ public class Vector {
      */
     @Override
     public String toString() {
-        return String.join(",", datos);
-        
+         return String.join(",", datos);
     }
     /**
      * Método que imprime por pantalla los elemntos del vector.

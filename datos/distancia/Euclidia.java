@@ -21,10 +21,10 @@ public class Euclidia implements IDistancia {
                 result += diferenciaDeCuadrado(a.getDouble(i) , b.getDouble(i));
             }
         }
-        return result;
+        return Math.sqrt(result);
     }
     private double diferenciaDeCuadrado(double numA, double numB) {
-        return Math.pow(numA-numB, 2);
+        return Math.pow(numB-numA, 2);
     }
     
 }

@@ -59,5 +59,9 @@ class VectorTest {
         Vector aux2 = new Vector("a,b,c");
         assertTrue(aux.compareIgual(aux2));
     }
-    
+    @Test
+    void testMax() {
+        Vector aux = new Vector("1,12121,2,3,5,1,2,3,300");
+        System.out.println(aux.max());
+    }
 }

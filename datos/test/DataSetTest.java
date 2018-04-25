@@ -10,6 +10,7 @@ class DataSetTest {
     void test() {
         DataSet nuevo = new DataSet("pruebaDataSetTest.csv");
         nuevo.print();
+        nuevo.printNormalizar();
     }
     
 }
