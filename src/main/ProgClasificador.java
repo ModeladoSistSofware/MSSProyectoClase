@@ -1,7 +1,8 @@
 package main;
 
-import clasificador.AlgoritmoKNN;
 import clasificador.Clasificador;
+import clasificadores.AlgoritmoKNN;
+
 import cogerDatos.DataSet;
 import distancia.Euclidia;
 
@@ -24,6 +25,8 @@ public class ProgClasificador {
        
           /// Conjunto de datos///////////////////////////
           DataSet datos = new DataSet("iris.csv");
+          datos.print();
+          datos.printNormalizar();
           //////////////////El Algoritmo//////////////////
           Euclidia distancia = new Euclidia();
           AlgoritmoKNN algoritmo = new AlgoritmoKNN(distancia);

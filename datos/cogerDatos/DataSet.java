@@ -8,8 +8,8 @@ import java.util.ArrayList;
 /**
  * Clase que contendra el conjunto de datos que recibira por fichero.
  * 
- * @author Jairo González Lemus. Email : alu0100813272@ull.edu.es Universidad:
- *         Universidad de La Laguna. Práctica Asignatura: Modelado Sistemas
+ * @author Jairo Gonzï¿½lez Lemus. Email : alu0100813272@ull.edu.es Universidad:
+ *         Universidad de La Laguna. Prï¿½ctica Asignatura: Modelado Sistemas
  *         Sofware.
  * @version 1.0
  * @since 2018
@@ -21,14 +21,14 @@ public class DataSet {
     
     private ArrayList<Vector> normalizado;
     /**
-     * Método constructor por defecto.
+     * Mï¿½todo constructor por defecto.
      */
     DataSet() {
         datos = new ArrayList<Vector>();
         normalizado = new ArrayList<Vector>();
     }
     /**
-     * Método constructor
+     * Mï¿½todo constructor
      * @param name
      * @param sc
      */
@@ -39,8 +39,8 @@ public class DataSet {
         this.normalizar();
     }
     /**
-     * Método constructor, lee todo los datos por el fichero que le pasomos su
-     * nombre como parámetros.
+     * Mï¿½todo constructor, lee todo los datos por el fichero que le pasomos su
+     * nombre como parï¿½metros.
      * @param nameFile
      */
     public DataSet(String nameFile) {
@@ -94,7 +94,7 @@ public class DataSet {
     }
     //////////////// Normalizar
     /**
-     * Método que normaliza los valore que hay en los datos segun.
+     * Mï¿½todo que normaliza los valore que hay en los datos segun.
      */
     private void normalizar() {
         for (Vector aux : datos) {
@@ -106,6 +106,7 @@ public class DataSet {
         Vector min = this.min();
         Vector nuevo = new Vector();
         for (int i = 0; i < dato.getTam() - 1; i++) {
+        	
             double num = dato.getDouble(i) - min.getDouble(i);
             double den = (max.getDouble(i) - min.getDouble(i));
             double x = Math.round(num / den);
@@ -117,21 +118,21 @@ public class DataSet {
     }
     ////////////////// normalizar
     /**
-     * Método que retorana el numero de atributos de la instancia.
+     * Mï¿½todo que retorana el numero de atributos de la instancia.
      * @return
      */
     public int getNumAttr() {
         return sc.getTam();
     }
     /**
-     * Método que retorana el numero de instancias.
+     * Mï¿½todo que retorana el numero de instancias.
      * @return
      */
     public int getTam() {
         return datos.size();
     }
     /**
-     * Método que devuelve todo los valores de la columna index en un tipo de
+     * Mï¿½todo que devuelve todo los valores de la columna index en un tipo de
      * objeto Vector.
      * @param index
      * @return
@@ -144,7 +145,7 @@ public class DataSet {
         return aux;
     }
     /**
-     * Se calcula el valor mínimo de cada atributo numerico y se devulve un
+     * Se calcula el valor mï¿½nimo de cada atributo numerico y se devulve un
      * vector con todos eso valores.
      * @return
      */
@@ -158,7 +159,7 @@ public class DataSet {
     }
     
     /**
-     * Se calcula el valor máximo de cada atributo numerico y se devulve un
+     * Se calcula el valor mï¿½ximo de cada atributo numerico y se devulve un
      * vector con todos eso valores.
      * @return
      */
@@ -172,42 +173,42 @@ public class DataSet {
     }
     
     /**
-     * Método para obtener la variable sc
+     * Mï¿½todo para obtener la variable sc
      * @return sc
      */
     public Instancia getSc() {
         return sc;
     }
     /**
-     * Método para obtener la variable datos
+     * Mï¿½todo para obtener la variable datos
      * @return datos
      */
     public ArrayList<Vector> getDatos() {
         return datos;
     }
     /**
-     * Método para establecer el valor de name
+     * Mï¿½todo para establecer el valor de name
      * @param name estable el valor de name
      */
     public void setName(String name) {
         this.name = name;
     }
     /**
-     * Método para establecer el valor de sc
+     * Mï¿½todo para establecer el valor de sc
      * @param sc estable el valor de sc
      */
     public void setSc(Instancia sc) {
         this.sc = sc;
     }
     /**
-     * Método para establecer el valor de datos
+     * Mï¿½todo para establecer el valor de datos
      * @param datos estable el valor de datos
      */
     public void setdatos(ArrayList<Vector> datos) {
         this.datos = datos;
     }
     /**
-     * Método para un nuevo congunto de datos como un Strin separado pro comas.
+     * Mï¿½todo para un nuevo congunto de datos como un Strin separado pro comas.
      * Ejemplo : a,b,c
      * @param newVector
      */
@@ -215,14 +216,14 @@ public class DataSet {
         this.datos.add(new Vector(linea));
     }
     /**
-     * Método para un nuevo congunto de datos.
+     * Mï¿½todo para un nuevo congunto de datos.
      * @param newVector
      */
     public void add(Vector newVector) {
         this.datos.add(newVector);
     }
     /**
-     * Método que devuelve una intancia en concreto.
+     * Mï¿½todo que devuelve una intancia en concreto.
      * @param index
      * @return
      */
@@ -242,13 +243,13 @@ public class DataSet {
         return result.substring(0, result.length() - 1);
     }
     /**
-     * Métdoo para visulizar todo los datos.
+     * Mï¿½tdoo para visulizar todo los datos.
      */
     public void print() {
         System.out.println(toString());
     }
     /**
-     * Método para visualizar normalizar
+     * Mï¿½todo para visualizar normalizar
      */
     public void printNormalizar() {
         for (Vector aux : normalizado) {
