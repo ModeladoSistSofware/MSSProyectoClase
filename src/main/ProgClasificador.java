@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import clasificador.AlgoritmoKNN;
 import clasificador.Clasificador;
 import cogerDatos.DataSet;
@@ -34,6 +36,15 @@ public class ProgClasificador {
           String newData = "kkkkk"; // vlaores de la instancia.
           String resultado = clasificador.clasifica(newData);
           System.out.println(resultado);
+          
+          
+          ArrayList<Double> t = new ArrayList<Double>();
+          t.add(2.2);
+          t.add(2.2);
+          t.add(3.2);
+          System.out.println(Collections.max(t));
+          
+       
 	}
 
 }
