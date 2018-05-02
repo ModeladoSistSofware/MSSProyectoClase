@@ -11,7 +11,11 @@ import java.util.Vector;
  * @since 2018
  */
 public class Estadistica {
-    
+    /**
+     * Método que devolvera la media de un conjunto de vectores.
+     * @param datos
+     * @return
+     */
     public static double media(Vector<Double> datos) {
         double suma =0;
         for(Double val : datos) {
@@ -19,14 +23,23 @@ public class Estadistica {
         }
         return (suma/ datos.size());
     }
+    /**
+     * Método que devolvera varainza de un conjunto de datos 
+     * @param datos
+     * @return
+     */
     public static double varianza(Vector<Double> datos) {
         double suma =0;
         double varianza=0;
         for(Double val : datos) {
             suma = Math.pow(val - media(datos), 2);
-            varianza = varianza +suma;
+            varianza = varianza + suma;
         }
-        varianza ? varianza/(n-1);no esta realizada.
-        return (suma/ datos.size());
+        return varianza/(datos.size()-1);
+    }
+    public static double desviacionTipica(Vector<Double> datos) {
+//        double desviacion = Math.sqrt(varianza(datos));
+//        Math.rint(desviacion);
+//        return desviacion
     }
 }
