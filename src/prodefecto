@@ -1,0 +1,160 @@
+Sino de da nada se pone 0.
+distancia euclidia.
+distancia con parametro p de manjata. 
+p=2 p=1 y si es chiby es p=infinito(estoy es poco eficienza)
+p = 2 es la recta tenr la opcion de poder configurar la distanciade mi algoritmo.
+
+
+Tesado de atributos : el tio carga el data set yo le kiero dar la 
+importancia a cada atributo y estoy consider en un princiopo k todo mis atributos tien
+importancia 1 pero la longitud es mas importantes qeu otro atributos o die
+k esa variables no influyen para nada .Esto se arregla poder poninedole peso 
+por defecto el peso de cada columna es un uno , peor a mi me gustaria poder decir 
+que tiene un peso en tre 0 y 1 si tengo el peso 0 no lo considere
+si yo le pongo 1/2 
+y tambien quiereso k la suma de todo los peso sea igual a uno
+y solo peso los atributos predictores la variable de clase no .
+
+tidas kas dutabcuak se nyktuokuca oir ek oesi se nultiplicaria con al 
+operaciona esjeplo yi*(x-y)^2.
+El tio no puede asignar pesos a lo loco 
+
+¿Por que en un principio es uno?
+Antes qeu valian 1 pro k todo contribuian por igual a la distancia.
+Tener encuanet a las caracteriscas presicsa.
+1/n(numero de atributos cuantitvio)= es esl misom peso o darl a otro mas peso.
+Peso 0 es para queta el atributo.
+si pongo el valor de un atributo tengo k caltular los demas valores.
+formula de la ditancia es añadir un landa. y forma separa para la idtanci  si keireo
+
+en la distribucion eculidia y hay k elevar (y(x-y))²
+yi*
+
+elecgir los k mas cesrcanos y los ordenamos.
+elr resultado es la clase mas frecuente que se parece a lo k le m
+La cals e mas valora es la mayoria simple es la regala.
+ej A = 2 vesocpñp 
+b= 3 iris-oto
+el resultado sera iri-Otro.
+
+Cada calse bota con la clase asignara y mirando la frecuencia es la k se elige.
+la regla de clasificacion mayoria simple
+la siguente varialci es permirte especifiacr una umbrar y que mas frecuente superesn
+un determinado umbrarl y si el unmbra es 0 o k el un bra es 50% 
+clase tien k lllea ahi sino no te coge ninguna.hacer la mayro comple y sino no somos capasa
+de ponernos de acuerdo.
+
+Poir defecto es unmbra 0 o puede descir calse mas bota 0.5 abaoluta
+o poner el valor de m por ejemplo 0.75 si es uno 1 es unanimidada 
+mienta mas grande el humbra mas dificil el acuerdo si pongo el humbra a 0 lo coje a
+aunk 2000 tios opinen lo contraio.
+
+// k=3 nuemoe de vecino k botan.
+
+Estamo influyendo como tomamo la decicion de como tomamo la variacion.
+salida si no de pute clasifta 
+// no se puede clasificar
+
+
+
+##################Pesado de casooooo
+para mi toda la opinicio me merece la misma confianza todo pesan los mismo
+en la vidad real pro defecto todo tien el mismo 
+peor la opiniend de la especializa tinee mas importancia a la que tenmo idea.
+por defecto cada uno tien 
+peso 1/K  parecido a lo de antes suam de los peso tien n
+
+//tengo la lisata de k veciano mas cercanos.
+
+// por defecto todo cuestan igual
+
+eston son peso para intancial las mas scescanas a el
+A = 0.2+0.1 = 0.3
+b = 0.7 = 0.7
+B es mi seleccionado
+pero entre toda las intanci son  
+El peso va segundo lso k vecino mas cercano si k vale 3 entonc para cada uno valda lo mimos
+o no depene el mas cercano elegir lo peso inversamente proporciona a la distancia
+si la distan ess d enton 1/d si d es 0 tences esta mas cesca y esl el putno k tenemo k elegirl
+regla de pesado es de cercania es proporcional a la distancia.
+el ustuario establece los voto buscnado el peso mas cercano 
+delta1 un nuemo son fijo
+delta2 otro nuemor son fijo  estes es moy igu k deltna subno 
+hay un defecto para cada opcion para sumar cada uno 
+k
+k-1
+k1
+es generalizado dos cosas 
+
+Opcion para mostara los parametros para ver la configuracion qeu 
+estoy implementando para k el la puta notar o salbar. puesdo hacerlo antes  despu de ejecutarlo
+para ver las regalr de configuración.
+
+/////
+Necesitamos esperimentar los datso para confirgrua la esperimentar yo tengo el dataset
+Para evaluas como de vuena es mi configuración.
+iris tien 150 fila
+utilizando esa divido mi data set en dos partes.
+una parte lo voy a llamar congunto de entrenamientoy atro lo voy a llmar congjunto de prueba
+estoy lo voy ahaces atnes d lainstania de confir la parte le congjutno de enternamien
+conjguno de prue  y esl tor  prueba
+y depsu el de prueba la caslifico 
+Coiger de manes aleator el 5 p5 o el 10aveces son 
+se hacer por porsentaje del modelo.
+Para sabes la predicicon predicti nuemero de caso bien predicho
+vers vers
+virg vers
+set  vers
+vers vers
+y el numeor de caso predicho en todoa  enton pro ej 2/5 el 40% bien y el 60% bien
+
+Lo anterio se puede hacer x verces y en el lo bueno seria k sea de 80% si mi algorimo esta bien
+si  no tien una predicion baja.
+
+
+
+Antes de la configuracion acutro del algorir hace una predicicion de probalid de tan %
+es decri k yo cuando meta una neuva flor va a hacertas, es un experimento bine realizado.
+esperiemtno se hace previa a las clasificacion de mi esperimento.
+precision predictira es una cosa teoriaca tuya .
+
+si mi conjunto de entenmaoi es todo la prediciion sera del 100% pro eso hay de partilo 
+enste congjunto de entrenamiento y prueba.
+hay k escluir uno elemnto a ver del conjunto.
+
+conjunot de entrenamientro mas grande de mi prueba se eligue todo de forma aleatroio.
+hay k experimentar para saber como de buene es la configurancion
+el usurio solo esperciom el % al conjunto de entrenamiento el resto es 
+de prueba.
+
+se puede seleccion si es aleatorio o no sino es aleator 
+es la ultimas para el data set se dice la 8 ultimas. 
+se 
+
+llmas muestreo aleatro sin remplanzo 8 fila(no se peuda estrar la fila dos vez).
+Aletro con ultimo calso. si es 
+aletoria la extrucicon , podneo configurar la semilla
+univoes discriea(1, 150) para estrar un nuevo entor y hay una clase en java
+qie te permite hacer eso k se puede esplecificar uan semilla varia una seminala disteinta
+pro defecto la semilla de lando es seed == 1234;
+
+Para que todo de igual  para k etengaos el mismo conjutno de entermaineto y prueba.
+
+
+Se permite salbar el conjutno de entermineo y peurva obsion para salbar lo y otroa par leerlo.
+
+
+
+Hacer la matriz de confuncion es una matriz de datso. pro cada clase que ha predicho el algoritmo
+lo k miede es el numeor d eerore 
+
+puede predie ver
+vir 
+virginia y
+es una matriz de dimesni  de l tamño de la clas y cada 
+entrada de la matris es algo asi.
+en la diagona a predicho y la diagona se puede ver la prediccit aparti de la matriz de la diagonal
+dprinciparl y da el procentage.
+
+40% solbre la cals versicolor no ha k culaquie clase. 
+el tota de peuga 

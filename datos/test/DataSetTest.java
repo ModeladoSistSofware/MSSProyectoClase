@@ -9,7 +9,9 @@ class DataSetTest {
     @Test
     void test() {
         DataSet nuevo = new DataSet("pruebaDataSetTest.csv");
-        nuevo.print();
+         Double aux = 1.2;
+         assertEquals(aux, nuevo.min(0),0.100);
+         nuevo.print();
         nuevo.printNormalizar();
     }
     

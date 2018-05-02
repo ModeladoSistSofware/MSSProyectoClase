@@ -1,14 +1,16 @@
-package clasificador;
+package clasificadores;
 
+import java.util.Vector;
 import cogerDatos.DataSet;
-import cogerDatos.Vector;
 import distancia.IDistancia;
 
+// Nota si esl prosesado el usuraio no dices no hay procesado.
+// Har 3 opciones.
 public class AlgoritmoKNN implements IClasificador {
     IDistancia distancia;
-    
+
     /**
-     * Método constructor
+     * Mï¿½todo constructor
      * @param distancia
      */
     public AlgoritmoKNN(IDistancia distancia) {
@@ -21,10 +23,15 @@ public class AlgoritmoKNN implements IClasificador {
      */
     @Override
     public String predecir(DataSet data, Vector newValue) {
-        double aux;
-        for( Vector value : data.getDatos()) {
-           aux= distancia.calcularDistancia(value, newValue);
-        }
+        double aux[] = new double[data.getTam()];
+        int i =0;
+        data.normalizar(newValue);
+        
+        for( Vector value : data.getNormalizado() ) {
+           aux[i] = distancia.calcularDistancia(value, newValue);
+           i++;
+        }     
+        
         return null;
     }
     

@@ -1,9 +1,10 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import java.util.Vector;
 import org.junit.jupiter.api.Test;
 import cogerDatos.Instancia;
-import cogerDatos.Vector;
+
 /**
  * Clase que donde se hacen los ters para comprobar la clase Instanncia.
  * 
@@ -17,8 +18,14 @@ class InstanciaTest {
     
     @Test
     void test() {
-        Vector name = new Vector("att1,att2,att3");   
-        Vector types = new Vector("int,int,int");   
+        Vector name = new Vector();   
+        name.add("attr3");
+        name.add("attr3");
+        name.add("attr3");
+        Vector types = new Vector();  
+        types.add("int");
+        types.add("int");
+        types.add("int");
         Instancia nuevo = new Instancia(name,types);
         nuevo.print();
     }

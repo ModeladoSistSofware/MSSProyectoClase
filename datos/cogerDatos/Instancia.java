@@ -1,4 +1,7 @@
 package cogerDatos;
+
+import java.util.Vector;
+
 /**
  * Clase que representara un Instancia
  * @author Jairo González Lemus. Email : alu0100813272@ull.edu.es Universidad:
@@ -8,8 +11,8 @@ package cogerDatos;
  * @since 2018
  */
 public class Instancia {
-	private Vector name;
-	private Vector types;
+	private Vector<String> name;
+	private Vector<String> types;
 	
 	/**
 	 * Método constructor
@@ -25,7 +28,7 @@ public class Instancia {
 	 * @return
 	 */
 	public int getTam(){
-		return name.getTam();
+		return name.size();
 	}
 	/*
 	 * (sin Javadoc)
@@ -45,28 +48,37 @@ public class Instancia {
      * Método para obtener la variable name  
      * @return name
      */
-    public Vector getName() {
+    public Vector<String> getName() {
         return name;
+    }
+    /**
+     * Método para obtener el valot de tipo la poscion i
+     * @param i
+     * @return
+     */
+    public String getTypes(int i) {
+        return this.types.get(i);
     }
     /**
      * Método para obtener la variable types  
      * @return types
      */
-    public Vector getTypes() {
+    public Vector<String> getTypes() {
         return types;
     }
     /**
      * Método para establecer el valor de name
      * @param name estable el valor de name 
      */
-    public void setName(Vector name) {
+    public void setName(Vector<String> name) {
         this.name = name;
     }
     /**
      * Método para establecer el valor de types
      * @param types estable el valor de types 
      */
-    public void setTypes(Vector types) {
+    public void setTypes(Vector<String> types) {
         this.types = types;
     }
+
 }

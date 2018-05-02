@@ -2,8 +2,10 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import clasificador.AlgoritmoKNN;
+import java.util.Vector;
 import clasificador.Clasificador;
+import clasificadores.AlgoritmoKNN;
+
 import cogerDatos.DataSet;
 import distancia.Euclidia;
 
@@ -26,6 +28,8 @@ public class ProgClasificador {
        
           /// Conjunto de datos///////////////////////////
           DataSet datos = new DataSet("iris.csv");
+          datos.print();
+          datos.printNormalizar();
           //////////////////El Algoritmo//////////////////
           Euclidia distancia = new Euclidia();
           AlgoritmoKNN algoritmo = new AlgoritmoKNN(distancia);
@@ -34,17 +38,23 @@ public class ProgClasificador {
           
           Clasificador clasificador = new Clasificador(datos, algoritmo);
           String newData = "kkkkk"; // vlaores de la instancia.
-          String resultado = clasificador.clasifica(newData);
+          String resultado = clasificador.clasifica();
           System.out.println(resultado);
           
-          
-          ArrayList<Double> t = new ArrayList<Double>();
-          t.add(2.2);
-          t.add(2.2);
-          t.add(3.2);
-          System.out.println(Collections.max(t));
-          
-       
+//          
+//          ArrayList<Double> t = new ArrayList<Double>();
+//          t.add(2.2);
+//          t.add(2.2);
+//          t.add(3.2);
+//          System.out.println(Collections.max(t));
+//          
+//          Vector<Double> aux = new Vector<Double>();
+//          Vector<String> aux2 = new Vector<String>();
+//          
+//          ArrayList<Vector> tl = new ArrayList<Vector>();
+//          tl.add(aux);
+//          tl.add(aux2);
+//          System.out.println(tl);
 	}
 
 }

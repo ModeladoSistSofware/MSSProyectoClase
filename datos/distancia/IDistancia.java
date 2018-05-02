@@ -3,7 +3,7 @@
  */
 package distancia;
 
-import cogerDatos.Vector;
+import java.util.Vector;
 
 /**
  * Interfaz para calcular la distancias hay entre dos Vectores.
@@ -14,5 +14,5 @@ import cogerDatos.Vector;
  * @since 2018
  */
 public interface IDistancia {
-    public double calcularDistancia(Vector a, Vector b);
+    public double calcularDistancia(Vector<Double> a, Vector<Double> b);
 }

@@ -1,6 +1,7 @@
 package distancia;
 
-import cogerDatos.Vector;
+import java.util.Vector;
+
 /**
  * Clase que calcula la distancia Ecuclidia entre dos Vecotres implementa la interfas 
  * IDistancia.
@@ -14,11 +15,11 @@ import cogerDatos.Vector;
 public class Euclidia implements IDistancia {
     
     @Override
-    public double calcularDistancia(Vector a, Vector b) {
+    public double calcularDistancia(Vector<Double> a, Vector<Double> b) {
         double result = 0;
-        if ( a.getTam() == b.getTam()) {
-            for(int i = 0 ; i< a.getTam() ; i++) {
-                result += diferenciaDeCuadrado(a.getDouble(i) , b.getDouble(i));
+        if ( a.size() == b.size()) {
+            for(int i = 0 ; i< a.size() ; i++) {
+                result += diferenciaDeCuadrado(a.get(i) , b.get(i));
             }
         }
         return Math.sqrt(result);
@@ -26,5 +27,4 @@ public class Euclidia implements IDistancia {
     private double diferenciaDeCuadrado(double numA, double numB) {
         return Math.pow(numB-numA, 2);
     }
-    
 }
