@@ -8,7 +8,9 @@ import distancia.IDistancia;
 // Har 3 opciones.
 public class AlgoritmoKNN implements IClasificador {
     IDistancia distancia;
+     int NumK;//*Aki separo los do*/
 
+     
     /**
      * M�todo constructor
      * @param distancia
@@ -24,14 +26,16 @@ public class AlgoritmoKNN implements IClasificador {
     @Override
     public String predecir(DataSet data, Vector newValue) {
         double aux[] = new double[data.getTam()];
-        int i =0;
-        data.normalizar(newValue);
+                  
+        Vector<Double> norma = data.normalizar(newValue);
+          
+        for(int i = 0 ; i < data.getTam(); i++){
+        		aux[i] = distancia.calcularDistancia(data.getIntanciaNormalizadoOnlyDouble(i), norma);
+           		System.out.println("EStoy calculando " + aux[i]);
+        }         
+        // Ordenar
         
-        for( Vector value : data.getNormalizado() ) {
-           aux[i] = distancia.calcularDistancia(value, newValue);
-           i++;
-        }     
-        
+        // segun la frecuencia.
         return null;
     }
     

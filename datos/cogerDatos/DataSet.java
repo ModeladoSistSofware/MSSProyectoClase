@@ -18,7 +18,7 @@ import java.util.Vector;
  */
 public class DataSet {
     private String name;
-    private Instancia sc;
+    private SChema sc;
     private ArrayList<Vector> datos;      // valor
     private ArrayList<Vector> normalizado;
     /**
@@ -33,7 +33,7 @@ public class DataSet {
      * @param name
      * @param sc
      */
-    DataSet(String name, Instancia sc) {
+    DataSet(String name, SChema sc) {
         this();
         this.name = name;
         this.sc = sc;
@@ -68,7 +68,7 @@ public class DataSet {
                     Vector types = cogerTypesDatos(linea);
                 
                     inicilizarTiposVectores(types);                  
-                    sc = new Instancia(attr, types);
+                    sc = new SChema(attr, types);
                     cont++;
                 }
                 this.add(linea);
@@ -90,7 +90,7 @@ public class DataSet {
         }
     }
     /**
-     * Método encargado de introducir el tipo de vector que ira 
+     * Mï¿½todo encargado de introducir el tipo de vector que ira 
      * dentro de datos. Se le pasara un vecor ocn los tipos de datos que son.
      * @param types
      */
@@ -106,7 +106,7 @@ public class DataSet {
          }         
     }
     /**
-     * Método que devuelve un vector con el tipo de dato que se ha almacenado distinguiendo si es de
+     * Mï¿½todo que devuelve un vector con el tipo de dato que se ha almacenado distinguiendo si es de
      * tipo double o es un string.
      */
     public Vector<String> cogerTypesDatos(String linea) {
@@ -133,7 +133,7 @@ public class DataSet {
         return resultado;
     }
     /**
-     * Método que pasa los datos que estan el string atributos.
+     * Mï¿½todo que pasa los datos que estan el string atributos.
      * @param linea
      * @return Vector de string.
      */
@@ -154,23 +154,39 @@ public class DataSet {
         }
         normalizado.add(this.datos.get(getTamAttr()-1));
     }
-    /**
-     * Metodo que normalizara el nuevo instancia de velores double.
-     * @param attr
-     * @return
-     */
+//    /**
+//     * Metodo que normalizara el nuevo instancia de velores double.
+//     * @param attr
+//     * @return
+//     */
+//    public Vector<Double> normalizar(Vector<Double> newInstancia) {
+//        Vector<Double> nuevo = new Vector<Double>();
+//        for(int i = 0 ; i < newInstancia.size(); i++) {
+//            Double max = this.max(i);
+//            Double min = this.min(i);
+//            Double den = max - min;   
+//            double num = newInstancia.get(i) - min;
+//            double x = Math.round(num / den);
+//            nuevo.add(x);
+//        }
+//        return nuevo;
+//    }
     public Vector<Double> normalizar(Vector<Double> newInstancia) {
-        Vector<Double> nuevo = new Vector<Double>();
-        for(int i = 0 ; i < newInstancia.size(); i++) {
-            Double max = this.max(i);
-            Double min = this.min(i);
-            Double den = max - min;   
-            double num = newInstancia.get(i) - min;
-            double x = Math.round(num / den);
-            nuevo.add(x);
-        }
-        return nuevo;
-    }
+      Vector<Double> nuevo = new Vector<Double>(newInstancia.size());
+      for(int i = 0 ; i < newInstancia.size()-1; i++) {
+          Double max = this.max(i);
+          Double min = this.min(i);
+          Double den = max - min;   
+          //System.out.println(newInstancia.get(i) + "Mi vecotr") ;
+          
+          double num = newInstancia.get(i) - min;
+          double x = Math.round(num / den);
+          nuevo.add(x);
+      }
+      return nuevo;
+  }
+    
+    
     /**
      * Se le pasa el attributo a recorrer.
      * @param attr
@@ -192,7 +208,7 @@ public class DataSet {
         return nuevo;
     }
     /**
-     * Se calcula el valor mínimo del atributo numerico qeu se seleccionea. 
+     * Se calcula el valor mï¿½nimo del atributo numerico qeu se seleccionea. 
      * @return el minimo.
      */
     public Double min(int attr) {
@@ -205,7 +221,7 @@ public class DataSet {
         return min;
     }
     /**
-     * Se calcula el valor máximo del atributo numerico qeu se seleccionea. 
+     * Se calcula el valor mï¿½ximo del atributo numerico qeu se seleccionea. 
      * @return el minimo.
      */
     public Double max(int attr) {
@@ -218,35 +234,35 @@ public class DataSet {
         return max;
     }
     /**
-     * Método que devuelve número de atributos
+     * Mï¿½todo que devuelve nï¿½mero de atributos
      * @return
      */
     public int getTamAttr() {
         return this.datos.size();
     }
     /**
-     * Método para coger un dato double.
+     * Mï¿½todo para coger un dato double.
      * @return
      */
     public Double getDatoDouble(int attr, int intancia) {
         return (Double) this.datos.get(attr).get(intancia);
     }
     /**
-     * Método datado
+     * Mï¿½todo datado
      * @return
      */
     public Object getDato(int attr, int intancia) {
         return this.datos.get(attr).get(intancia);
     }
     /**
-     * Método datado
+     * Mï¿½todo datado
      * @return
      */
     public Object getDatoNormalizado(int attr, int intancia) {
         return this.normalizado.get(attr).get(intancia);
     }
     /**
-     * Método que devuelve nuemoro de intancias
+     * Mï¿½todo que devuelve nuemoro de intancias
      * @return
      */
     public int getTam() {
@@ -256,7 +272,7 @@ public class DataSet {
      * Mï¿½todo para obtener la variable sc
      * @return sc
      */
-    public Instancia getSc() {
+    public SChema getSc() {
         return sc;
     }
     /**
@@ -284,7 +300,7 @@ public class DataSet {
      * Mï¿½todo para establecer el valor de sc
      * @param sc estable el valor de sc
      */
-    public void setSc(Instancia sc) {
+    public void setSc(SChema sc) {
         this.sc = sc;
     }
     /**
@@ -324,6 +340,75 @@ public class DataSet {
     public Vector get(int index) {
         return this.datos.get(index);
     }
+    /**
+     * MÃ©todo que devolvera una instancia
+     * @param
+     * @return
+     */
+    public ArrayList<Vector> getIntancia(int index){
+    	ArrayList<Vector> aux = new ArrayList<Vector>(this.getTamAttr());
+    	for(int i=0; i< this.getTamAttr();i++){
+    		if( sc.getTypes(i).equals("Double") ){
+    			Vector<Double> auxVector = new Vector<Double>(); 
+    			auxVector.add((Double)this.getDato(i, index));
+    			aux.add(auxVector);
+    		}else{
+    			Vector<String> auxVector = new Vector<String>(); 
+    			auxVector.add((String)this.getDato(i, index));
+    			aux.add(auxVector);
+    		}
+    	}
+    	return aux;
+    }
+    /**
+     * MÃ©todo que devolvera una instancia que solo tenga solo lo atributos
+     * @param
+     * @return
+     */
+    public Vector<Double> getIntanciaOnlyDouble(int index){
+    	Vector<Double> aux = new Vector<Double>(this.getTamAttr());
+    	for(int i=0; i< this.getTamAttr();i++){
+    		if( sc.getTypes(i).equals("Double") ){
+    			aux.add((Double)this.getDato(i, index));
+    		}
+    	}
+    	return aux;
+    }
+    
+    /**
+     * MÃ©todo que devolvera una instancia del ArrayLis normalizado
+     * @param
+     * @return
+     */
+    public ArrayList<Vector> getIntanciaNormalizada(int index){
+    	ArrayList<Vector> aux = new ArrayList<Vector>(this.getTamAttr());
+    	for(int i=0; i< this.getTamAttr();i++){
+    		if( sc.getTypes(i).equals("Double") ){
+    			Vector<Double> auxVector = new Vector<Double>(); 
+    			auxVector.add((Double)this.getDatoNormalizado(i, index));
+    			aux.add(auxVector);
+    		}else{
+    			Vector<String> auxVector = new Vector<String>(); 
+    			auxVector.add((String)this.getDatoNormalizado(i, index));
+    			aux.add(auxVector);
+    		}
+    	}
+    	return aux;
+    }
+    /**
+     * MÃ©todo que devolvera una instancia que solo tenga solo lo atributos del ArrayListNormalizado.
+     * @param
+     * @return
+     */
+    public Vector<Double> getIntanciaNormalizadoOnlyDouble(int index){
+    	Vector<Double> aux = new Vector<Double>(this.getTamAttr());
+    	for(int i=0; i< this.getTamAttr();i++){
+    		if( sc.getTypes(i).equals("Double") ){
+    			aux.add((Double)this.getDatoNormalizado(i, index));
+    		}
+    	}
+    	return aux;
+    }
     /*
      * (sin Javadoc)
      * @see java.lang.Object#toString()
@@ -342,23 +427,23 @@ public class DataSet {
         return result.substring(0, result.length() - 1);
     }
     /**
-     * Método en el que se veran mucho datos relativo a el conjunto de datos.
+     * Mï¿½todo en el que se veran mucho datos relativo a el conjunto de datos.
      * @return
      */
     public String toStringCabecera() {
-        String result = "Número de Atributos : " + this.getTamAttr() + "\n" ;    
+        String result = "Nï¿½mero de Atributos : " + this.getTamAttr() + "\n" ;    
         result+=sc.toString() + "\n";
-        result+="Número de casos: " + this.getTam() + "\n";
+        result+="Nï¿½mero de casos: " + this.getTam() + "\n";
         return result;       
     }
     /**
-     * Método en el que se veran mucho datos relativo a el conjunto de datos.
+     * Mï¿½todo en el que se veran mucho datos relativo a el conjunto de datos.
      * @return
      */
     public String toStringAtributos() {
-        String result = "Número de Atributos : " + this.getTamAttr() + "\n" ;    
+        String result = "Nï¿½mero de Atributos : " + this.getTamAttr() + "\n" ;    
         result+=sc.toString() + "\n";
-        result+="Número de casos: " + this.getTam() + "\n";
+        result+="Nï¿½mero de casos: " + this.getTam() + "\n";
         return result;    
      
     }

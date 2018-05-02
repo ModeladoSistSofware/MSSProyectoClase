@@ -12,6 +12,7 @@ import cogerDatos.DataSet;
  * @since 2018
  */
 public interface IClasificador {
+
     /**
      * M�todo al que se le pasara el conjunto de datos y el nuevo valor, devolvera
      * el valor que se predicira seg�n lo variable data.

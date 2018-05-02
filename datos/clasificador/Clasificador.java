@@ -52,11 +52,12 @@ public class Clasificador {
      */
     public String clasifica(String newData) {
         String aux[] = newData.split(",");
-        Vector<String> result = new Vector<String>(aux.length);
-        for (int i = 0; i < aux.length; i++) {
-            result.add(aux[i]);
-        }
+        Vector<Double> result = new Vector<Double>(aux.length);
         
+        for (int i = 0; i < aux.length; i++) {
+            result.add(Double.parseDouble(aux[i]));
+        }
+        //System.out.println("EStoy clasificando" + result);
         return clasifica.predecir(setTraining, result); 
     }
 }
