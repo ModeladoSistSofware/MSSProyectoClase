@@ -17,10 +17,10 @@ public class Euclidia implements IDistancia {
     @Override
     public double calcularDistancia(Vector<Double> a, Vector<Double> b) {
         double result = 0.0;
-        System.out.println(a.size() +" diferencia aaaaaaaaaaaa"+b.size() );
+       // System.out.println(a.size() +" diferencia aaaaaaaaaaaa"+b.size() );
         if ( a.size() == b.size()) {
             for(int i = 0 ; i< a.size() ; i++) {
-            	System.out.println(" diferencia aaaaaaaaaaaa");
+            	//System.out.println(" diferencia aaaaaaaaaaaa");
                 result += diferenciaDeCuadrado(a.get(i) , b.get(i));
             }
         }
@@ -28,7 +28,7 @@ public class Euclidia implements IDistancia {
         return Math.sqrt(result);
     }
     private double diferenciaDeCuadrado(double numA, double numB) {
-    	  System.out.println(Math.pow(numB-numA, 2)+  " diferencia aaaaaaaaaaaa");
+    	//  System.out.println(Math.pow(numB-numA, 2)+  " diferencia aaaaaaaaaaaa");
         return Math.pow(numB-numA, 2);
     }
 }

@@ -173,7 +173,7 @@ public class DataSet {
 //    }
     public Vector<Double> normalizar(Vector<Double> newInstancia) {
       Vector<Double> nuevo = new Vector<Double>(newInstancia.size());
-      for(int i = 0 ; i < newInstancia.size()-1; i++) {
+      for(int i = 0 ; i < newInstancia.size(); i++) {
           Double max = this.max(i);
           Double min = this.min(i);
           Double den = max - min;   

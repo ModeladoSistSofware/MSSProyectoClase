@@ -30,8 +30,10 @@ public class AlgoritmoKNN implements IClasificador {
         Vector<Double> norma = data.normalizar(newValue);
           
         for(int i = 0 ; i < data.getTam(); i++){
-        		aux[i] = distancia.calcularDistancia(data.getIntanciaNormalizadoOnlyDouble(i), norma);
-           		System.out.println("EStoy calculando " + aux[i]);
+//            System.out.println("Estoy dentor de aki" +data.getIntanciaNormalizadoOnlyDouble(i).size());
+//            System.out.println("Estoy dentor de aki" + norma.size());
+            aux[i] = distancia.calcularDistancia(data.getIntanciaNormalizadoOnlyDouble(i), norma);
+//           	System.out.println("EStoy calculando " + aux[i]);
         }         
         // Ordenar
         

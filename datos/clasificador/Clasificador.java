@@ -27,6 +27,7 @@ public class Clasificador {
         super();
         this.clasifica = clasifica;
         this.setTraining = setTraining;
+        System.out.println("estoy en mi contructors" + setTraining.getTamAttr());
     }  
     //////////////////////////////////////////
 //    -separao el conjutno de entrenamientor en dos seugn x cosas.
@@ -57,7 +58,8 @@ public class Clasificador {
         for (int i = 0; i < aux.length; i++) {
             result.add(Double.parseDouble(aux[i]));
         }
-        //System.out.println("EStoy clasificando" + result);
+//        System.out.println("EStoy clasificando" + result.size());
+//        System.out.println("EStoy clasificando" + setTraining.getTamAttr());
         return clasifica.predecir(setTraining, result); 
     }
 }

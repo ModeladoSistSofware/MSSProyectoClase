@@ -32,7 +32,7 @@ public class ProgClasificador {
           AlgoritmoKNN algoritmo = new AlgoritmoKNN(distancia);
           //////////////////El Algoritmo////////////////////////
           
-          
+          //System.out.println(datos.getTamAttr() + "dafsa");
           Clasificador clasificador = new Clasificador(datos, algoritmo);
           String newData = "6.3,3.3,6.0,2.5"; // vlaores de la instancia.
           String resultado = clasificador.clasifica(newData);
