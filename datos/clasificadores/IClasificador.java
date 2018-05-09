@@ -21,4 +21,9 @@ public interface IClasificador {
      * @return
      */
     public String predecir(DataSet data, Vector newValue );
+    /**
+     * Método que devolvera los parámetro del algoritmo configurado.
+     * @return
+     */
+    public String parametroAlgoritmo();
 }

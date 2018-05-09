@@ -1,8 +1,10 @@
 package clasificador;
 
+import java.util.ArrayList;
 import java.util.Vector;
 import clasificadores.IClasificador;
 import cogerDatos.DataSet;
+import matriz.MatrizConfucion;
 
 
 /**
@@ -18,6 +20,7 @@ import cogerDatos.DataSet;
 public class Clasificador {
     IClasificador clasifica;
     DataSet setTraining;
+    MatrizConfucion matriz;
     /**
      * M�todo constructor
      * @param clasifica
@@ -27,17 +30,26 @@ public class Clasificador {
         super();
         this.clasifica = clasifica;
         this.setTraining = setTraining;
-        System.out.println("estoy en mi contructors" + setTraining.getTamAttr());
+        this.matriz = new MatrizConfucion(this.setTraining., null);
     }  
-    //////////////////////////////////////////
-//    -separao el conjutno de entrenamientor en dos seugn x cosas.
-//    
-//    
-//    -despues pasr por el casificado y contar cada ve zk hacienta.
-//    -
-    
-    ///////////////////////////////////////////
-    
+    /**
+     * MEtodo para ver hacre pruebas.
+     * @param porcentaje
+     */
+    public void hacerPruebas(int porcentaje) {
+       this.setTraining.modoExperimentar(porcentaje);
+       
+       ArrayList<Vector> auxPrueba = this.setTraining.getPrueba();
+       DataSet auxEntrenamiento = this.setTraining.getEntrenamiento();
+       int verdad =0;
+       
+       for(int i = 0; i< auxPrueba.getTam();i++) {
+            String aux = this.clasifica.predecir(auxEntrenamiento, auxPrueba.getIntanciaOnlyDouble(i));
+            if(aux.equals(auxPrueba.getDato(auxPrueba.getTamAttr(), i))){
+                verdad++;
+            }
+       }
+    }
     /**
      * M�todo que devolvera el resultados seg�n la nueva instancia introducida.
      * @param newData

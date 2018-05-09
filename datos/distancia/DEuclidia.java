@@ -12,7 +12,7 @@ import java.util.Vector;
  * @version 1.0
  * @since 2018
  */
-public class Euclidia implements IDistancia {
+public class DEuclidia implements IDistancia {
     
     @Override
     public double calcularDistancia(Vector<Double> a, Vector<Double> b) {

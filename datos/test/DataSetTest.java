@@ -10,9 +10,20 @@ class DataSetTest {
     void test() {
         DataSet nuevo = new DataSet("pruebaDataSetTest.csv");
          Double aux = 1.2;
-         assertEquals(aux, nuevo.min(0),0.100);
-         nuevo.print();
+        
+        //nuevo.print();
         nuevo.printNormalizar();
     }
-    
+//    @Test
+//    void infoTest() {
+//        DataSet nuevo = new DataSet("pruebaDataSetTest.csv");
+//        Double aux = 1.2;
+//        System.out.println(nuevo.toStringInfo());  
+//    }
+//    @Test
+//    void infoAtributosTest() {
+//        DataSet nuevo = new DataSet("pruebaDataSetTest.csv");
+//        Double aux = 1.2;
+//        System.out.println(nuevo.toStringInfoAtributos());  
+//    }
 }

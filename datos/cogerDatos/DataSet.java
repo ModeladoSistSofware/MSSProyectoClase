@@ -4,8 +4,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.TreeSet;
 import java.util.Vector;
+import estadistica.Estadistica;
+import normalizar.INormalizar;
+import normalizar.NBasico;
 
 /**
  * Clase que contendra el conjunto de datos que recibira por fichero.
@@ -20,23 +23,30 @@ public class DataSet {
     private String name;
     private SChema sc;
     private ArrayList<Vector> datos;      // valor
+    private INormalizar estandarizar;
     private ArrayList<Vector> normalizado;
+    
+    private ArrayList<Vector> entrenamiento;      // valor
+    private ArrayList<Vector> prueba;      // valor
     /**
      * Mï¿½todo constructor por defecto.
      */
     DataSet() {
         datos = new ArrayList<Vector>();
+        estandarizar = new NBasico();// estes es pro defecto
         normalizado = new ArrayList<Vector>();
     }
+
     /**
      * Mï¿½todo constructor
      * @param name
      * @param sc
      */
-    DataSet(String name, SChema sc) {
+    DataSet(String name, SChema sc, INormalizar estandarizar) {
         this();
         this.name = name;
         this.sc = sc;
+        this.estandarizar = estandarizar;
     }
     /**
      * Mï¿½todo constructor, lee todo los datos por el fichero que le pasomos su
@@ -73,7 +83,9 @@ public class DataSet {
                 }
                 this.add(linea);
             }          
-            normalizar();
+
+           this.normalizado = this.estandarizar.normalizar(datos);
+           
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -146,99 +158,25 @@ public class DataSet {
         return result;
     }
     /**
-     * Mï¿½todo que normaliza los valore que hay en los datos segun.
-     */
-    private void normalizar() {
-        for (int i = 0; i < this.getTamAttr()-1 ; i++) {
-            normalizado.add(normalizar(i));
-        }
-        normalizado.add(this.datos.get(getTamAttr()-1));
-    }
-//    /**
-//     * Metodo que normalizara el nuevo instancia de velores double.
-//     * @param attr
-//     * @return
-//     */
-//    public Vector<Double> normalizar(Vector<Double> newInstancia) {
-//        Vector<Double> nuevo = new Vector<Double>();
-//        for(int i = 0 ; i < newInstancia.size(); i++) {
-//            Double max = this.max(i);
-//            Double min = this.min(i);
-//            Double den = max - min;   
-//            double num = newInstancia.get(i) - min;
-//            double x = Math.round(num / den);
-//            nuevo.add(x);
-//        }
-//        return nuevo;
-//    }
-    public Vector<Double> normalizar(Vector<Double> newInstancia) {
-      Vector<Double> nuevo = new Vector<Double>(newInstancia.size());
-      for(int i = 0 ; i < newInstancia.size(); i++) {
-          Double max = this.max(i);
-          Double min = this.min(i);
-          Double den = max - min;   
-          //System.out.println(newInstancia.get(i) + "Mi vecotr") ;
-          
-          double num = newInstancia.get(i) - min;
-          double x = Math.round(num / den);
-          nuevo.add(x);
-      }
-      return nuevo;
-  }
-    
-    
-    /**
-     * Se le pasa el attributo a recorrer.
-     * @param attr
-     * @return
-     */
-    public Vector normalizar(int attr) {
-        Double max = this.max(attr);
-        Double min = this.min(attr);
-        Double den = max - min;   
-        Vector nuevo = new Vector();
-        Vector<Double> aux = this.datos.get(attr);
-        int tam = aux.size();
-        for (int i = 0; i < tam; i++) {
-            double num = aux.get(i) - min;
-            double x = Math.round(num / den);
-            //System.out.println(Math.round(x) + "calculo");
-            nuevo.add(x);
-        }
-        return nuevo;
-    }
-    /**
-     * Se calcula el valor mï¿½nimo del atributo numerico qeu se seleccionea. 
-     * @return el minimo.
-     */
-    public Double min(int attr) {
-        Double min = Double.MAX_VALUE;
-        Vector aux = this.datos.get(attr);
-        int tam = aux.size();
-        for (int i = 0; i < tam; i++) {
-            min= Double.min(min, this.getDatoDouble(attr,i));
-        }
-        return min;
-    }
-    /**
-     * Se calcula el valor mï¿½ximo del atributo numerico qeu se seleccionea. 
-     * @return el minimo.
-     */
-    public Double max(int attr) {
-        Double max = Double.MIN_VALUE;
-        Vector<Double> aux = this.datos.get(attr);
-        int tam = aux.size();
-        for (int i = 0; i < tam; i++) {
-            max= Double.max(max, this.getDatoDouble(attr,i));
-        }
-        return max;
-    }
-    /**
      * Mï¿½todo que devuelve nï¿½mero de atributos
      * @return
      */
     public int getTamAttr() {
         return this.datos.size();
+    }
+    /**
+     * Método para obtener la variable estandarizar  
+     * @return estandarizar
+     */
+    public INormalizar getEstandarizar() {
+        return estandarizar;
+    }
+    /**
+     * Método para establecer el valor de estandarizar
+     * @param estandarizar estable el valor de estandarizar 
+     */
+    public void setEstandarizar(INormalizar estandarizar) {
+        this.estandarizar = estandarizar;
     }
     /**
      * Mï¿½todo para coger un dato double.
@@ -374,7 +312,21 @@ public class DataSet {
     	}
     	return aux;
     }
-    
+   
+    /**
+     * MÃ©todo que devolvera una instancia que solo tenga solo lo atributos
+     * @param
+     * @return
+     */
+    public Vector<Double>  getIntanciaPesada(int index){
+        Vector<Double> aux = new Vector<Double>(this.getTamAttr());
+        for(int i=0; i< this.getTamAttr();i++){
+            if( sc.getTypes(i).equals("Double") ){
+                aux.add((Double)this.getDato(i, index)* this.sc.getPeso(i));
+            }
+        }
+        return aux;
+    }
     /**
      * MÃ©todo que devolvera una instancia del ArrayLis normalizado
      * @param
@@ -415,7 +367,7 @@ public class DataSet {
      */
     @Override
     public String toString() {
-        String result = toStringCabecera();
+        String result = toStringInfo();
         
         for(int i=0; i <this.getTam();i++) {
             for(int j=0 ;j<this.getTamAttr();j++) {
@@ -423,29 +375,120 @@ public class DataSet {
             }
             result += "\n";
         }
-        
         return result.substring(0, result.length() - 1);
     }
     /**
      * Mï¿½todo en el que se veran mucho datos relativo a el conjunto de datos.
      * @return
      */
-    public String toStringCabecera() {
-        String result = "Nï¿½mero de Atributos : " + this.getTamAttr() + "\n" ;    
+    public String toStringInfo() {
+        String result = "Número de Atributos : " + this.getTamAttr() + "\n" ;    
         result+=sc.toString() + "\n";
-        result+="Nï¿½mero de casos: " + this.getTam() + "\n";
+        result+="Número de casos: " + this.getTam() + "\n";
         return result;       
     }
     /**
      * Mï¿½todo en el que se veran mucho datos relativo a el conjunto de datos.
      * @return
      */
-    public String toStringAtributos() {
-        String result = "Nï¿½mero de Atributos : " + this.getTamAttr() + "\n" ;    
-        result+=sc.toString() + "\n";
-        result+="Nï¿½mero de casos: " + this.getTam() + "\n";
-        return result;    
-     
+    public String toStringInfoAtributos() {
+        String result =toStringAtributosCuantitativos();
+        result +=toStringAtributosCualitativos();
+        return result;   
+    }
+    /**
+     * Método que visulizara los datos referido a los atributos cuntitativos.
+     * @return
+     */
+    public String toStringAtributosCuantitativos() {
+        String result = "";
+        for(int attr=0; attr<this.getTamAttr();attr++ ) {
+            if(this.sc.getTypes(attr) == "Double" ) {
+                result += "-----\n";
+                result += "Nombre del Atributo: " + this.sc.getName(attr) + "\n" ;    
+                result += "Minimo valor: " + String.format("%.2f", Estadistica.min(this.datos.get(attr))) + "\n" ;    
+                result += "Maximo valor: " + String.format("%.2f", Estadistica.max(this.datos.get(attr))) + "\n" ;
+                result += "Media valor: " + String.format("%.2f", Estadistica.media(this.datos.get(attr))) + "\n" ;
+                result += "Desviación Típica: " + String.format("%.2f",this.desviacionTipica(attr)) + "\n" ;
+            }
+        }
+        return result;
+    }
+    /**
+     * Método que visulizara los datos referido a los atributos cuntitativos.
+     * @return
+     */
+    public String toStringAtributosCualitativos() {
+        String result = "";
+        for(int attr=0; attr<this.getTamAttr();attr++ ) {
+            if(this.sc.getTypes(attr).equals("String") ) {
+                result = "-----\n";
+                result += "Nombre del Atributo: " + this.sc.getName(attr) + "\n" ;    
+                int nValores = this.nClasesDistitnas(attr);
+                result += "Cantidad de clase distintas: " +  nValores + "\n" ; 
+                TreeSet<String> aux = this.valorPosibles(attr);
+                for(String val: aux) {
+                    result += "Valor: "+ val + " Frecuencia Relativa: " +
+                    String.format("%.2f",this.frecuenciaRelativa(val,attr)*100)+ "%\n" ; 
+                }
+            }
+        }
+        return result;
+    }
+    /**
+     * Metodo que calcula  la frecuencia relativa.Es el cociente entre la frecuencia 
+     * absoluta de un determinado valor y el número total de datos.
+     * @param val
+     * @return
+     */
+    public double frecuenciaRelativa(String val, int index) {
+        return (frecunenciaAbsoluta(val,index)/this.getTam());
+    }
+    /**
+     * Metodo que calcula la frecuencia absoluta, numero de veces que aparece un determinado valor.
+     * @param val
+     * @param index
+     * @return
+     */
+    public double frecunenciaAbsoluta(String val, int index) {
+        Vector<String> aux = this.datos.get(index);
+        double cont=0;
+        for(String dato : aux) {
+            if(dato.equals(val)) {
+                cont++;
+            }
+        }
+      
+        return cont;
+    }
+    /**
+     * Método que devolvera la cantidad de valro posibles
+     * @param attr
+     * @return
+     */
+    public int nClasesDistitnas(int attr) {
+        return valorPosibles(attr).size();
+    }
+    /**
+     * Método qeu devuelve una treeSet con los valores posibles que tenemos.
+     * @param attr
+     * @return
+     */
+     TreeSet<String> valorPosibles(int attr) {
+         TreeSet result = new TreeSet();
+         Vector<String> aux = this.datos.get(attr);
+         for(String val: aux) {
+             result.add(val);
+         }
+         return result;
+     }
+    /**
+     * Método que obtine la desviación típica del attributo attr.
+     * @param attr
+     * @return
+     */
+    private double desviacionTipica(int attr) {
+        return Estadistica.desviacionTipica(this.datos.get(attr));
     }
     /**
      * Mï¿½tdoo para visulizar todo los datos.
@@ -464,15 +507,83 @@ public class DataSet {
      */
     public String toStringNormalizar() {
          String result = sc.toString() + "\n";
-     
-        
         for(int i=0; i <this.getTam();i++) {
             for(int j=0 ;j<this.getTamAttr();j++) {
                 result +=  this.getDatoNormalizado(j, i) + ",";
             }
             result += "\n";
         }
-        
         return result.substring(0, result.length() - 1);
+    }
+    /**
+     * Método que llna los vetor de entrenamiento y de prueba
+     * @param aux
+     */
+    private void llenarVectoresExperimentar(int aux) {
+
+        for(int i=0; i< this.getTamAttr();i++) {
+            Vector auxVector = new Vector();
+            for(int j=0; j< aux;j++) {
+                auxVector.add(this.normalizado.get(i).get(j));
+            }
+            this.entrenamiento.add( auxVector );
+        }
+        
+        for(int i=1; i< this.getTamAttr();i++) {
+            Vector auxVector = new Vector();
+            for(int j=aux; j< getTam();j++) {
+                auxVector.add(this.normalizado.get(i).get(j));
+            }
+            this.entrenamiento.add( auxVector );
+        }
+    }
+    /**
+     * Método para  ver el mood expetimentacion, se le pasa el posrecnetajeque es el conjunto de
+     * pruebas.
+     * @param porcentaje
+     */
+    public void modoExperimentar(int porcentaje) {
+       int aux = (int)(this.datos.size() * (porcentaje/100));
+       llenarVectoresExperimentar(aux);       
+    }
+    /**
+     * Métoda para normalizar la nueva intancia.
+     * @param newValue
+     * @return
+     */
+    public Vector<Double> normalizar(Vector newValue) {
+        return this.estandarizar.normalizar(newValue);
+    }
+
+    /**
+     * Método para obtener la variable entrenamiento  
+     * @return entrenamiento
+     */
+    public ArrayList<Vector> getEntrenamiento() {
+        return entrenamiento;
+    }
+
+    /**
+     * Método para obtener la variable prueba  
+     * @return prueba
+     */
+    public ArrayList<Vector> getPrueba() {
+        return prueba;
+    }
+
+    /**
+     * Método para establecer el valor de entrenamiento
+     * @param entrenamiento estable el valor de entrenamiento 
+     */
+    public void setEntrenamiento(ArrayList<Vector> entrenamiento) {
+        this.entrenamiento = entrenamiento;
+    }
+
+    /**
+     * Método para establecer el valor de prueba
+     * @param prueba estable el valor de prueba 
+     */
+    public void setPrueba(ArrayList<Vector> prueba) {
+        this.prueba = prueba;
     }
 }

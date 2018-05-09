@@ -2,7 +2,7 @@ package distancia;
 
 import java.util.Vector;
 
-public class Manhattan implements IDistancia {
+public class DManhattan implements IDistancia {
 
 	@Override
 	public double calcularDistancia(Vector<Double> a, Vector<Double> b) {
